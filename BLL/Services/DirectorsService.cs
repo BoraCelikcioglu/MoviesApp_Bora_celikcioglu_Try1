@@ -48,11 +48,23 @@ namespace BLL.Services
             var entity = _db.Directors.SingleOrDefault(d => d.Id == record.Id);
             if (entity is null)
                 return Error("Director can't be found!!!");
-            entity.Name = record.Name?.Trim();
-            _db.Directors.Update(entity);
-            _db.SaveChanges();
-            return Success("Director updated successfully.");
+            if (!entity.Name.Equals(record.Name?.Trim()) || 
+                !entity.Surname.Equals(record.Surname?.Trim())
+			   || !entity.IsRetired == record.IsRetired)
 
+
+               
+
+
+            {
+                entity.Name = record.Name?.Trim();
+                entity.Surname = record.Surname?.Trim();
+                entity.IsRetired = record.IsRetired;
+                _db.Directors.Update(entity);
+                _db.SaveChanges();
+            }
+                return Success("Director updated successfully.");
+            
         }
 
         public ServiceBase Delete(int id)

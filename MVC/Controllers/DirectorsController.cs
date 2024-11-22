@@ -8,128 +8,124 @@ using BLL.Models;
 
 namespace MVC.Controllers
 {
-    public class MoviesController : MvcController
+    public class DirectorsController : MvcController
     {
         // Service injections:
-        private readonly IMoviesService _moviesService;
-        //private readonly IDirectorsService _directorService;
+        private readonly IDirectorsService _directorsService;
 
         /* Can be uncommented and used for many to many relationships. ManyToManyRecord may be replaced with the related entiy name in the controller and views. */
         //private readonly IManyToManyRecordService _ManyToManyRecordService;
 
-        public MoviesController(
-            IMoviesService movieService
-            //, IDirectorsService directorService
+        public DirectorsController(
+			IDirectorsService directorService
 
-        /* Can be uncommented and used for many to many relationships. ManyToManyRecord may be replaced with the related entiy name in the controller and views. */
-        //, IManyToManyRecordService ManyToManyRecordService
+            /* Can be uncommented and used for many to many relationships. ManyToManyRecord may be replaced with the related entiy name in the controller and views. */
+            //, IManyToManyRecordService ManyToManyRecordService
         )
         {
-            _moviesService = movieService;
-            //_directorService = directorService;
+            _directorsService = directorService;
 
             /* Can be uncommented and used for many to many relationships. ManyToManyRecord may be replaced with the related entiy name in the controller and views. */
             //_ManyToManyRecordService = ManyToManyRecordService;
         }
 
-        // GET: Movies
+        // GET: Directors
         public IActionResult Index()
         {
             // Get collection service logic:
-            var list = _moviesService.Query().ToList();
+            var list = _directorsService.Query().ToList();
             return View(list);
         }
 
-        // GET: Movies/Details/5
+        // GET: Directors/Details/5
         public IActionResult Details(int id)
         {
             // Get item service logic:
-            var item = _moviesService.Query().SingleOrDefault(q => q.Record.Id == id);
+            var item = _directorsService.Query().SingleOrDefault(q => q.Record.Id == id);
             return View(item);
         }
 
         protected void SetViewData()
         {
             // Related items service logic to set ViewData (Record.Id and Name parameters may need to be changed in the SelectList constructor according to the model):
-            //ViewData["DirectorId"] = new SelectList(_directorService.Query().ToList(), "Record.Id", "Name");
-
+            
             /* Can be uncommented and used for many to many relationships. ManyToManyRecord may be replaced with the related entiy name in the controller and views. */
             //ViewBag.ManyToManyRecordIds = new MultiSelectList(_ManyToManyRecordService.Query().ToList(), "Record.Id", "Name");
         }
 
-        // GET: Movies/Create
+        // GET: Directors/Create
         public IActionResult Create()
         {
             SetViewData();
             return View();
         }
 
-        // POST: Movies/Create
+        // POST: Directors/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(MoviesModel movie)
+        public IActionResult Create(DirectorsModel director)
         {
             if (ModelState.IsValid)
             {
                 // Insert item service logic:
-                var result = _moviesService.Create(movie.Record);
+                var result = _directorsService.Create(director.Record);
                 if (result.IsSuccessful)
                 {
                     TempData["Message"] = result.Message;
-                    return RedirectToAction(nameof(Details), new { id = movie.Record.Id });
+                    return RedirectToAction(nameof(Details), new { id = director.Record.Id });
                 }
                 ModelState.AddModelError("", result.Message);
             }
             SetViewData();
-            return View(movie);
+            return View(director);
         }
 
-        // GET: Movies/Edit/5
+        // GET: Directors/Edit/5
         public IActionResult Edit(int id)
         {
             // Get item to edit service logic:
-            var item = _moviesService.Query().SingleOrDefault(q => q.Record.Id == id);
+            var item = _directorsService.Query().SingleOrDefault(q => q.Record.Id == id);
             SetViewData();
             return View(item);
         }
 
-        // POST: Movies/Edit
+        // POST: Directors/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(MoviesModel movie)
+        public IActionResult Edit(DirectorsModel director)
         {
             if (ModelState.IsValid)
             {
                 // Update item service logic:
-                var result = _moviesService.Update(movie.Record);
+                var result = _directorsService.Update(director.Record);
                 if (result.IsSuccessful)
                 {
                     TempData["Message"] = result.Message;
-                    return RedirectToAction(nameof(Details), new { id = movie.Record.Id });
+                    return RedirectToAction(nameof(Details), new { id = director.Record.Id });
                 }
                 ModelState.AddModelError("", result.Message);
             }
             SetViewData();
-            return View(movie);
+            return View(director);
         }
 
-        // GET: Movies/Delete/5
+        // GET: Directors/Delete/5
         public IActionResult Delete(int id)
         {
             // Get item to delete service logic:
-            var item = _moviesService.Query().SingleOrDefault(q => q.Record.Id == id);
+            var item = _directorsService.Query().SingleOrDefault(q => q.Record.Id == id);
             return View(item);
         }
 
-        // POST: Movies/Delete
+        // POST: Directors/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
             // Delete item service logic:
-            var result = _moviesService.Delete(id);
+            var result = _directorsService.Delete(id);
             TempData["Message"] = result.Message;
             return RedirectToAction(nameof(Index));
         }
-    }
+	}
 }

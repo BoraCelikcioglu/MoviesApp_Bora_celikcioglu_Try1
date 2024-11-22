@@ -36,7 +36,7 @@ namespace BLL.Services
             if (_db.Movies.Any(m => m.Id == record.Id))
                 return Error("That movie exists!!!");
             record.Id = record.Id;
-            record.Name = record.Name?.Trim();
+            //record.Name = record.Name?.Trim();
             _db.Movies.Add(record);
             _db.SaveChanges();
             return Success("movie added succesfully");

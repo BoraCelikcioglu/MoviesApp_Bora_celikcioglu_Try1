@@ -1,4 +1,4 @@
-﻿@model MoviesModel
+﻿@model DirectorsModel
 
 @* Generated from Custom Template. *@
 @* Model namespace using directive should be added to _ViewImports.cshtml. *@
@@ -8,7 +8,7 @@
     var dateTimePickerClass = "datetimepicker";
 }
 @{
-    ViewData["Title"] = "Movie Create";
+    ViewData["Title"] = "Director Create";
 }
 
 <div class="@containerDivClass">
@@ -34,27 +34,17 @@
 			</div>
         </div>
         <div class="row mb-3">
-            <label asp-for="ReleaseDate" class="col-2 col-form-label fw-bold"></label>
+            <label asp-for="Surname" class="col-2 col-form-label fw-bold"></label>
 			<div class="col-10">
-				<input asp-for="Record.ReleaseDate" class="form-control @dateTimePickerClass" type="text" />
-				<span asp-validation-for="Record.ReleaseDate" class="text-danger"></span>
+			    <input asp-for="Record.Surname" class="form-control" />
+				<span asp-validation-for="Record.Surname" class="text-danger"></span>
 			</div>
         </div>
         <div class="row mb-3">
-            <label asp-for="TotalRevenue" class="col-2 col-form-label fw-bold"></label>
-			<div class="col-10">
-			    <input asp-for="Record.TotalRevenue" class="form-control" />
-				<span asp-validation-for="Record.TotalRevenue" class="text-danger"></span>
-			</div>
-        </div>
-        <div class="row mb-3">
-            <label asp-for="DirectorName" class="col-2 col-form-label fw-bold"></label>
-			<div class="col-10">
-				<select asp-for="Record.Name" class="form-select" asp-items="ViewBag.DirectorName">
-					<option value="">-- Select --</option>
-				</select>
-				<span asp-validation-for="Record.Name" class="text-danger"></span>
-			</div>
+			<label asp-for="IsRetired" class="col-2 col-form-label fw-bold"></label>
+			<div class="col-10 pt-2">
+				<input class="form-check-input" asp-for="Record.IsRetired" />
+            </div>
         </div>
 
 @* Can be uncommented and used for many to many relationships. ManyToManyRecord may be replaced with the related entiy name in the controller and views. *@
@@ -80,7 +70,3 @@
         </div>
     </form>
 </div>  
-
-@section Scripts {
-    <partial name="_DateTimePicker" />
-}
