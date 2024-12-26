@@ -48,7 +48,7 @@ namespace BLL.Migrations
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     ReleaseDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     TotalRevenue = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    DirectorId = table.Column<int>(type: "int", nullable: true)
+                    DirectorId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -57,7 +57,8 @@ namespace BLL.Migrations
                         name: "FK_Movies_Directors_DirectorId",
                         column: x => x.DirectorId,
                         principalTable: "Directors",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(

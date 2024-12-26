@@ -1,6 +1,7 @@
 ﻿using BLL.DAL;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -13,24 +14,25 @@ namespace BLL.Models
         public Director Record { get; set; }
 
 
-        public int Id => Record.Id;
 
         public string Name => Record.Name;
-
-
         public string Surname => Record.Surname;
 
-        public bool IsRetired => Record.IsRetired;
+        [DisplayName("Full Name")]
+        public string FullName => Record.Name + " " + Record.Surname;
+
+        [DisplayName("Status")]
+        public string IsRetired => Record.IsRetired ? "Retired" : "Not Retired";
 
 
-        public List<Movie> Movies => Record.Movies;
+        public string Movies => string.Join("<br>", Record.Movies?.Select(m => m.Name));
 
 
 
 
 
 
-       
+
 
     }
 }

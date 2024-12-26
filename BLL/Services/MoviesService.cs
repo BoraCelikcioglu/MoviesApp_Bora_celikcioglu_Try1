@@ -50,6 +50,8 @@ namespace BLL.Services
             if (entity == null)
                 return Error("Movie not found");
             entity.Name = record.Name?.Trim();
+            entity.ReleaseDate = record.ReleaseDate;
+            entity.TotalRevenue = record.TotalRevenue;
             _db.Movies.Update(entity);
             _db.SaveChanges();
             return Success("Movie updated");

@@ -28,18 +28,10 @@
     <hr />
     <div class="row mb-3">
         <div class="col-2 fw-bold">
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.FullName)
         </div>
         <div class="col-10">
-            @Html.DisplayFor(model => model.Name)
-        </div>
-    </div>
-    <div class="row mb-3">
-        <div class="col-2 fw-bold">
-            @Html.DisplayNameFor(model => model.Surname)
-        </div>
-        <div class="col-10">
-            @Html.DisplayFor(model => model.Surname)
+            @Html.DisplayFor(model => model.FullName)
         </div>
     </div>
     <div class="row mb-3">
@@ -50,6 +42,14 @@
             @Html.DisplayFor(model => model.IsRetired)
         </div>
     </div>
+        <div class="row mb-3">
+            <div class="col-2 fw-bold">
+                @Html.DisplayNameFor(model => model.Movies)
+            </div>
+            <div class="col-10">
+                @Html.DisplayFor(model => model.Movies)
+            </div>
+        </div>
 
 @* Can be uncommented and used for many to many relationships. ManyToManyRecord may be replaced with the related entiy name in the controller and views. *@
     @*

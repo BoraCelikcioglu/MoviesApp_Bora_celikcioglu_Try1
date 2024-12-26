@@ -5,7 +5,7 @@
 
 @{
     var containerDivClass = "container";
-    var dateTimePickerClass = "datetimepicker";
+    
 }
 @{
     ViewData["Title"] = "Director Create";
@@ -23,7 +23,7 @@
         @TempData["Message"]
     </p>
     }
-    <form asp-action="Create" autocomplete="off">
+    <form asp-action="Create" autocomplete="off" method="post">
 		@Html.AntiForgeryToken()
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="row mb-3">
@@ -46,6 +46,7 @@
 				<input class="form-check-input" asp-for="Record.IsRetired" />
             </div>
         </div>
+        
 
 @* Can be uncommented and used for many to many relationships. ManyToManyRecord may be replaced with the related entiy name in the controller and views. *@
         @*

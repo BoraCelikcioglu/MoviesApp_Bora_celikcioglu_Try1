@@ -11,17 +11,16 @@ namespace BLL.Models
     public class MoviesModel
     {
         public Movie Record {  get; set; }
-        public int Id => Record.Id;
+        
 
     
         public string Name => Record.Name;
 
-        public DateTime? ReleaseDate => Record.ReleaseDate;
+        public string ReleaseDate => !Record.ReleaseDate.HasValue  ? string.Empty : Record.ReleaseDate.Value.ToString("MM/dd/yyyy") ; //public DateTime? ReleaseDate => Record.ReleaseDate 
 
-        public decimal TotalRevenue => Record.TotalRevenue; 
-        public int? DirectorId => Record.DirectorId;
+        public string TotalRevenue => Record.TotalRevenue.ToString("C2");
 
-        public string DirectorName => Record.Director.Name;
+        public string DirectorName => Record.Director?.Name;
         
 
     }

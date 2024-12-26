@@ -17,7 +17,7 @@ namespace BLL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.10")
+                .HasAnnotation("ProductVersion", "8.0.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -74,7 +74,7 @@ namespace BLL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("DirectorId")
+                    b.Property<int>("DirectorId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -122,7 +122,9 @@ namespace BLL.Migrations
                 {
                     b.HasOne("BLL.DAL.Director", "Director")
                         .WithMany("Movies")
-                        .HasForeignKey("DirectorId");
+                        .HasForeignKey("DirectorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Director");
                 });
