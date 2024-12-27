@@ -72,8 +72,14 @@ namespace BLL.Services
             var entity = _db.Directors.Include(d => d.Movies).SingleOrDefault(d => d.Id == id);
             if (entity is null)
                 return Error("Director can't be found!!!");
+
+
+
+
             if (entity.Movies.Any()) // count >0
+
                 return Error("Director has relational movies");
+
             _db.Directors.Remove(entity);
             _db.SaveChanges();
             return Success("Director deleted succesfully.");

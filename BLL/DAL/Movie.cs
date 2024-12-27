@@ -18,8 +18,8 @@ namespace BLL.DAL
 
         public DateTime? ReleaseDate { get; set; }
 
-        public decimal TotalRevenue { get; set; }
-        public int DirectorId { get; set; } // int? olabilir hata verirse
+        public decimal? TotalRevenue { get; set; }
+        public int? DirectorId { get; set; } // int? olabilir hata verirse
 
         public Director Director { get; set; } // navigational property
 

@@ -58,16 +58,32 @@
     </div>
 
 @* Can be uncommented and used for many to many relationships. ManyToManyRecord may be replaced with the related entiy name in the controller and views. *@
-    @*
-    <div class="row mb-3">
+    @* Way 1 : *@
+   @*  <div class="row mb-3">
         <div class="col-2 fw-bold">
-            <b>@Html.DisplayNameFor(model => model.ManyToManyRecords)</b>
+                <b>@Html.DisplayNameFor(model => model.MovieGenreList)</b>
         </div>
         <div class="col-10">
-            @Html.Raw(Model.ManyToManyRecords)
+                @if (Model.MovieGenreList is not null && Model.MovieGenreList.Any())
+                {
+                    foreach(var genreItem in Model.MovieGenreList)
+                    {
+                        @(genreItem + "<br>");
+                    }
+                }
+         </div>
+    </div> *@
+   @* Way 2 : *@
+   <div class="row mb-3">
+        <div class="col-2 fw-bold">
+            @Html.DisplayNameFor(model => model.Genres)
+        </div>
+        <div class="col-10">
+            @Html.Raw(Model.Genres)
         </div>
     </div>
-    *@
+
+
 
     <hr /> 
     <a asp-action="Edit" asp-route-id="@Model.Record.Id">Edit</a>&nbsp;|&nbsp;

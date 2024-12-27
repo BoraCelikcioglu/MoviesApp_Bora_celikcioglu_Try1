@@ -1,4 +1,4 @@
-﻿@model MoviesModel
+﻿  @model MoviesModel
 
 @* Generated from Custom Template. *@
 @* Model namespace using directive should be added to _ViewImports.cshtml. *@
@@ -36,7 +36,7 @@
         <div class="row mb-3">
             <label asp-for="ReleaseDate" class="col-2 col-form-label fw-bold"></label>
 			<div class="col-10">
-				<input asp-for="Record.ReleaseDate" class="form-control @dateTimePickerClass" type="text" />
+				<input asp-for="Record.ReleaseDate" class="form-control @dateTimePickerClass"  />
 				<span asp-validation-for="Record.ReleaseDate" class="text-danger"></span>
 			</div>
         </div>
@@ -58,15 +58,15 @@
         </div>
 
 @* Can be uncommented and used for many to many relationships. ManyToManyRecord may be replaced with the related entiy name in the controller and views. *@
-        @*
+        
         <div class="row mb-3">
-            <label asp-for="ManyToManyRecordIds" class="col-2 col-form-label fw-bold"></label>
+            <label asp-for="GenreIds" class="col-2 col-form-label fw-bold"></label>
 	        <div class="col-10">
-		        <select multiple asp-for="ManyToManyRecordIds" class="form-select" asp-items="ViewBag.ManyToManyRecordIds"></select>
-		        <span asp-validation-for="ManyToManyRecordIds" class="text-danger"></span>
+		        <select multiple asp-for="GenreIds" class="form-select" asp-items="ViewBag.GenreIds"></select>
+		        <span asp-validation-for="GenreIds" class="text-danger"></span>
 	        </div>
         </div>
-        *@
+       
 
         <hr />  
         <div class="row mb-3">
@@ -82,5 +82,5 @@
 </div>  
 
 @section Scripts {
-    <partial name="_DateTimePicker" />
+    @*  <partial name="_DateTimePicker" /> *@
 }

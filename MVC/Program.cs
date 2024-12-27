@@ -1,15 +1,25 @@
 using BLL.DAL;
+using BLL.Models;
 using BLL.Services;
+using BLL.Services.Bases;
 using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//AppSettings
+var appSettingsSection = builder.Configuration.GetSection(nameof(AppSettings));
+appSettingsSection.Bind(new AppSettings());
 //IoC container:
-var connectionString = "server=(localdb)\\mssqllocaldb;database=MoviesAppDB;trusted_connection=true;";
+var connectionString = builder.Configuration.GetConnectionString("Db");
 builder.Services.AddDbContext<Db>(options => options.UseSqlServer(connectionString));
-builder.Services.AddScoped<IMoviesService, MoviesService>();
+//builder.Services.AddScoped<IMoviesService, MoviesService>();
 builder.Services.AddScoped<IDirectorsService, DirectorsService>();
+builder.Services.AddScoped<IService<Movie,MoviesModel>, MoviesService>();
+
+builder.Services.AddScoped<IService<Genre, GenreModel>, GenreService>();
+
 
 var app = builder.Build();
 
