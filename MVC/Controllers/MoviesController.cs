@@ -5,11 +5,13 @@ using BLL.Services;
 using BLL.Models;
 using BLL.DAL;
 using BLL.Services.Bases;
+using Microsoft.AspNetCore.Authorization;
 
 // Generated from Custom Template.
 
 namespace MVC.Controllers
 {
+    
     public class MoviesController : MvcController
     {
         // Service injections:
@@ -37,6 +39,7 @@ namespace MVC.Controllers
         }
 
         // GET: Movies
+        [AllowAnonymous]
         public IActionResult Index()
         {
             // Get collection service logic:
@@ -62,6 +65,8 @@ namespace MVC.Controllers
         }
 
         // GET: Movies/Create
+        [Authorize(Roles = "Admin")]
+
         public IActionResult Create()
         {
             SetViewData();
@@ -71,6 +76,7 @@ namespace MVC.Controllers
         // POST: Movies/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles ="Admin")]
         public IActionResult Create(MoviesModel movie)
         {
             if (ModelState.IsValid)
@@ -89,6 +95,8 @@ namespace MVC.Controllers
         }
 
         // GET: Movies/Edit/5
+        [Authorize(Roles = "Admin")]
+
         public IActionResult Edit(int id)
         {
             // Get item to edit service logic:
@@ -100,6 +108,8 @@ namespace MVC.Controllers
         // POST: Movies/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
+
         public IActionResult Edit(MoviesModel movie)
         {
             if (ModelState.IsValid)
@@ -118,8 +128,14 @@ namespace MVC.Controllers
         }
 
         // GET: Movies/Delete/5
+        [Authorize(Roles = "Admin")]
+
         public IActionResult Delete(int id)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Login", "Users");
+            }
             // Get item to delete service logic:
             var item = _moviesService.Query().SingleOrDefault(q => q.Record.Id == id);
             return View(item);
@@ -128,6 +144,8 @@ namespace MVC.Controllers
         // POST: Movies/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
+
         public IActionResult DeleteConfirmed(int id)
         {
             // Delete item service logic:
