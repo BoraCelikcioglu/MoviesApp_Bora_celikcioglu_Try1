@@ -10,7 +10,7 @@ namespace BLL.DAL
         public string Name { get; set; }
 
 
-        public List<Role> Roles { get; set; } = new List<Role>();   
+        public List<User> Users { get; set; } = new List<User>();   
 
 
 

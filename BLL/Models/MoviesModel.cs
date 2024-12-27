@@ -22,6 +22,7 @@ namespace BLL.Models
         public string TotalRevenue => Record.TotalRevenue.HasValue ? Record.TotalRevenue.
             Value.ToString("C2") : "0";
 
+        [DisplayName("Director")]
         public string DirectorName => Record.Director?.Name + " " + Record.Director?.Surname;
 
         //Way 1:
