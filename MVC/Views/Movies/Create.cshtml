@@ -36,7 +36,7 @@
         <div class="row mb-3">
             <label asp-for="ReleaseDate" class="col-2 col-form-label fw-bold"></label>
 			<div class="col-10">
-				<input asp-for="Record.ReleaseDate" class="form-control @dateTimePickerClass"  />
+				<input asp-for="Record.ReleaseDate" class="form-control @dateTimePickerClass"  type="text"/>
 				<span asp-validation-for="Record.ReleaseDate" class="text-danger"></span>
 			</div>
         </div>
@@ -82,5 +82,5 @@
 </div>  
 
 @section Scripts {
-    @*  <partial name="_DateTimePicker" /> *@
+     <partial name="_DateTimePicker" />
 }

@@ -76,9 +76,9 @@ namespace BLL.Services
 
 
 
-            if (entity.Movies.Any()) // count >0
+            //if (entity.Movies.Any()) // count >0
 
-                return Error("Director has relational movies");
+            //    return Error("Director has relational movies");
 
             _db.Directors.Remove(entity);
             _db.SaveChanges();

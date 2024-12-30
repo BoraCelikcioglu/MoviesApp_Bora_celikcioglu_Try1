@@ -4,7 +4,7 @@
   "libraries": [
     {
       "library": "jquery-datetimepicker@2.5.20",
-      "destination": "wwwroot/lib/jquery-datetimepicker/"
+      "destination": "wwwroot/jquery-datetimepicker/"
     }
   ]
 }

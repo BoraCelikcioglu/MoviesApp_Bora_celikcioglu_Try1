@@ -71,11 +71,11 @@ namespace BLL.Services
             if (entity is null)
                 return Error("Movie not found");
 
-            if (entity.Director is not null)
+            //if (entity.Director is not null)
 
-                return Error("Movie has relational directors");
-           
-            
+            //    return Error("Movie has relational directors");
+
+            _db.MovieGenres.RemoveRange(entity.MovieGenres);
             _db.Movies.Remove(entity);
             _db.SaveChanges();
             return Success("movie deleted");
